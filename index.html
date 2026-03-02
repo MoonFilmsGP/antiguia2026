@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visita Jalisco 2026 | Guía Oficial</title>
+    <style>
+        :root {
+            --glitch-intensity: 0px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Helvetica', sans-serif;
+            transition: filter 0.3s;
+            overflow-x: hidden;
+        }
+
+        /* Estética Turística */
+        header {
+            background: #007bff;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        section {
+            padding: 50px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+        }
+
+        /* Capa de Corrupción */
+        .glitch-filter {
+            filter: contrast(1.2) hue-rotate(calc(var(--glitch-intensity) * 1deg));
+        }
+
+        /* Pop-ups de Búsqueda */
+        .search-poster {
+            position: fixed;
+            width: 250px;
+            padding: 15px;
+            background: #fff1a8;
+            border: 2px solid #000;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+            z-index: 1000;
+            pointer-events: none; /* No se pueden cerrar fácilmente */
+        }
+    </style>
+</head>
+<body id="main-content">
+
+    <header>
+        <h1>JALISCO TE ESPERA - MUNDIAL 2026</h1>
+        <p>Descubre la joya de México</p>
+    </header>
+
+    <section>
+        <div class="card">
+            <h2>Estadio Akron: Sede de Clase Mundial</h2>
+            <p>Disfruta del mejor fútbol en una arquitectura vanguardista...</p>
+        </div>
+
+        <div style="height: 1500px;"></div>
+    </section>
+
+    <div id="popup-layer"></div>
+
+    <script>
+        const body = document.getElementById('main-content');
+        const popupLayer = document.getElementById('popup-layer');
+
+        // 1. Efecto de Corrupción por Scroll
+        window.addEventListener('scroll', () => {
+            const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            const intensity = scrollPercent * 100;
+
+            // Distorsiona el color y el desenfoque
+            body.style.filter = `hue-rotate(${intensity * 2}deg) blur(${scrollPercent * 2}px)`;
+
+            // Genera un pop-up aleatorio cada que avanzas
+            if (Math.random() > 0.98) createPopup();
+        });
+
+        // 2. Generador de Fichas
+        function createPopup() {
+            const popup = document.createElement('div');
+            popup.className = 'search-poster';
+            popup.style.top = Math.random() * 80 + 'vh';
+            popup.style.left = Math.random() * 80 + 'vw';
+            popup.innerHTML = `<strong>¿DÓNDE ESTÁN?</strong><br>Desaparecido en las cercanías del estadio.<br><small>Fecha: --/--/--</small>`;
+            popupLayer.appendChild(popup);
+        }
+    </script>
+</body>
+</html>
