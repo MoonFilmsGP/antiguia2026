@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOKEN FINAL</title>
+    <style>
+        body {
+            background-color: #050505;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Times New Roman', Times, serif;
+            overflow: hidden;
+            background-image: radial-gradient(circle at center, #1a1a1a 0%, #000 80%);
+        }
+
+        .token-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 30px;
+            opacity: 0;
+            animation: emerge 4s forwards 1s;
+            /* Aparece muy lento */
+        }
+
+        @keyframes emerge {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .handwritten-note {
+            background-color: transparent;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 2.2rem;
+            line-height: 1.5;
+            font-style: italic;
+            /* Aquí idealmente iría una fuente caligráfica importada de Google Fonts como 'Caveat' o 'Indie Flower' */
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.2);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .handwritten-note::before {
+            content: '"';
+            font-size: 4rem;
+            color: #8b1c31;
+            position: absolute;
+            top: -30px;
+            left: -20px;
+            opacity: 0.5;
+        }
+
+        /* El objeto personal grande al final */
+        .personal-item {
+            display: block;
+            margin: 0 auto 30px;
+            width: 250px;
+            height: 250px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><circle cx="100" cy="100" r="90" fill="none" stroke="%23333" stroke-width="2"/><text x="40" y="105" fill="%23555" font-family="sans-serif" font-size="14">FOTO_OBJETO</text></svg>') center no-repeat;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+            transition: 0.5s;
+        }
+
+        .personal-item:hover {
+            filter: drop-shadow(0 0 30px rgba(139, 28, 49, 0.5));
+            transform: scale(1.05);
+        }
+
+        .author {
+            display: block;
+            text-align: right;
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .btn-restart {
+            margin-top: 60px;
+            display: inline-block;
+            color: #555;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 0.8rem;
+            border: 1px solid #333;
+            padding: 5px 15px;
+            transition: 0.3s;
+        }
+
+        .btn-restart:hover {
+            color: #fff;
+            border-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <audio id="ambient-audio" loop>
+        <!-- Aquí iría la nota de voz solicitada, usando un dummy file o archivo local al final -->
+        <source src="placeholder_audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="token-container">
+
+        <!-- Aquí se montaría la fotografía de la prenda, la nota manchada, etc. -->
+        <div class="personal-item"></div>
+
+        <div class="handwritten-note">
+            Prometieron que el mundo nos vería brillar... pero apagaron tu luz para que ellos pudieran jugar. No
+            descansaré hasta traerte de vuelta a casa.
+            <span class="author">- Colectivo de Madres Buscadoras</span>
+        </div>
+
+        <a href="index.html" class="btn-restart">volver al inicio gubernamental</a>
+
+    </div>
+
+    <script>
+        // Reproducir audio ambiental o de voz al hacer clic en cualquier parte de la pantalla 
+        // (ya que los navegadores bloquean el autoplay)
+        document.body.addEventListener('click', () => {
+            const audio = document.getElementById('ambient-audio');
+            if (audio.paused) {
+                audio.play().catch(e => console.log('No audio file found.'));
+            }
+        }, { once: true });
+    </script>
+</body>
+
+</html>

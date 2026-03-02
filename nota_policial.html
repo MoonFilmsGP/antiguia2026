@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA JUDICIAL GOB. ESTADO - EXPEDIENTE</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #dcdcdc;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .document-container {
+            background-color: #fcebd1;
+            /* Color de papel viejo */
+            color: #111;
+            padding: 40px;
+            max-width: 700px;
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.05);
+            position: relative;
+            transform: rotate(-1deg);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #555;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .seal {
+            width: 80px;
+            height: 80px;
+            border: 3px double #333;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.6rem;
+            color: #8b1c31;
+            /* Sello rojo */
+            opacity: 0.6;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .redacted {
+            background-color: #000;
+            color: #000;
+            user-select: none;
+            padding: 0 5px;
+        }
+
+        .highlight {
+            background-color: rgba(255, 255, 0, 0.4);
+        }
+
+        /* Foto grapada */
+        .attached-photo {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 150px;
+            height: 150px;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 5px;
+            transform: rotate(5deg);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .attached-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(150%);
+        }
+
+        .staple {
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            width: 15px;
+            height: 3px;
+            background: #999;
+            transform: rotate(-15deg);
+        }
+
+        /* ENLACE AL FINAL DEL TÚNEL */
+        .hidden-clue {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .hidden-clue:hover {
+            color: #8b1c31;
+            text-shadow: 0 0 5px rgba(139, 28, 49, 0.5);
+        }
+
+        /* Efectos visuales perturbadores */
+        .blur-text {
+            filter: blur(2px);
+            transition: filter 2s;
+        }
+
+        .document-container:hover .blur-text {
+            filter: blur(0px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="document-container">
+
+        <div class="attached-photo">
+            <div class="staple"></div>
+            <!-- Placeholder para objeto personal (ej. zapato o credencial) -->
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='%23eee'/><text x='15' y='50' fill='%23666' font-size='10'>EVIDENCIA #4</text></svg>"
+                alt="Evidencia">
+        </div>
+
+        <div class="header">
+            <div class="seal">FISCALÍA<br>ESTATAL</div>
+            <h1>REPORTE DE INCIDENCIA - ARCHIVADO</h1>
+            <p style="font-size: 0.8rem; text-align: right;">C.I: <span class="redacted">4982-B</span> | FECHA:
+                15/03/2026</p>
+        </div>
+
+        <div class="content">
+            <p>En relación a los hechos acontecidos en las inmediaciones del <span class="redacted">ESTADIO AKRON</span>
+                tras el evento inaugural, los elementos de seguridad pública reportan el hallazgo de pertenencias
+                personales no reclamadas en el cuadrante B-4.</p>
+
+            <p><strong>DECLARACIÓN TESTIFICAL:</strong> "...yo lo vi subirse a la unidad. Era una patrulla, o al menos
+                eso parecía. Tenía las placas <span class="redacted">JAL-924</span>. Le dijeron que era una revisión de
+                rutina por los <span class="highlight">protocolos del mundial</span> y no volvimos a saber de él."</p>
+
+            <p class="blur-text">El rastreo de las cámaras del C5 de ese sector se reportan con *mantenimiento forzoso*
+                durante la franja horaria del incidente. Se dictamina el cierre temporal de la <a
+                    href="token_final.html" class="hidden-clue">carpeta</a> por falta de pruebas vinculantes.</p>
+        </div>
+
+        <div style="margin-top: 50px; font-style: italic; font-size: 0.9rem; text-align: center; color: #555;">
+            "Fin del reporte generado automáticamente."
+        </div>
+
+    </div>
+
+    <script>
+        // Animación de parpadeo de luces en la pantalla
+        setInterval(() => {
+            if (Math.random() > 0.95) {
+                document.body.style.backgroundColor = "#222";
+                setTimeout(() => { document.body.style.backgroundColor = "#0a0a0a"; }, 100);
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

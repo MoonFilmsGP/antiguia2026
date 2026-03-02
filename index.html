@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,7 @@
             --text-color: #333;
             --glitch-intensity: 0px;
             --hue-shift: 0deg;
-            
+
             /* Fuentes */
             --font-main: 'Arial', sans-serif;
             --font-serif: 'Times New Roman', serif;
@@ -45,14 +46,13 @@
             height: 100vh;
             pointer-events: none;
             z-index: 9999;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.05) 0px,
-                rgba(0, 0, 0, 0.05) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-            opacity: 0; /* Aumentará con el scroll */
+            background: repeating-linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.05) 0px,
+                    rgba(0, 0, 0, 0.05) 1px,
+                    transparent 1px,
+                    transparent 2px);
+            opacity: 0;
+            /* Aumentará con el scroll */
             transition: opacity 0.5s;
         }
 
@@ -67,8 +67,9 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            flex-wrap: wrap; /* Para responsiveness */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+            /* Para responsiveness */
         }
 
         .logo-container {
@@ -97,7 +98,7 @@
             content: "IMG_MISSING";
             position: absolute;
             font-size: 0.5rem;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
             bottom: -15px;
         }
 
@@ -107,7 +108,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        
+
         .subtitle {
             font-family: var(--font-serif);
             color: #666;
@@ -134,12 +135,6 @@
             background: rgba(179, 142, 93, 0.1);
         }
 
-        /* HOTSPOT 1: El enlace de Rutas Seguras */
-        #hotspot-link {
-            cursor: help; /* Una pista sutil */
-            color: #2c4a43; 
-        }
-
         /* HERO SECTION */
         .hero {
             background-color: var(--gob-green);
@@ -152,7 +147,10 @@
         /* Imagen de fondo rotísima / mal cargada */
         .hero-bg {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.1"><rect width="100" height="100" fill="%238b1c31"/></svg>');
             background-size: cover;
             z-index: 0;
@@ -168,7 +166,7 @@
         .hero h2 {
             font-size: 3rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
         }
 
         .btn-oficial {
@@ -194,7 +192,8 @@
             max-width: 900px;
             margin: 40px auto;
             padding: 0 20px;
-            height: 3000px; /* Para forzar el scroll */
+            height: 3000px;
+            /* Para forzar el scroll */
         }
 
         .grid-tours {
@@ -226,89 +225,6 @@
             margin-bottom: 15px;
         }
 
-        /* HOTSPOT 2: Elemento suelto en una tarjeta */
-        .hotspot-stain {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: radial-gradient(circle, rgba(139,28,49,0.4) 0%, rgba(255,255,255,0) 70%);
-            bottom: 10px;
-            right: 15px;
-            cursor: pointer;
-            border-radius: 50%;
-            opacity: 0.5;
-        }
-        .hotspot-stain:hover {
-            opacity: 1;
-            background: radial-gradient(circle, rgba(139,28,49,0.8) 0%, rgba(255,255,255,0) 70%);
-        }
-
-        /* SISTEMA DE INVENTARIO (BANDEJA DE ERRORES DEL SISTEMA) */
-        #inventory-panel {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            background: white;
-            border: 2px solid var(--gob-red);
-            box-shadow: -5px 5px 0px rgba(0,0,0,0.8);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            transform: translateY(120%);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-family: monospace;
-        }
-
-        #inventory-panel.visible {
-            transform: translateY(0);
-        }
-
-        .inventory-header {
-            background: var(--gob-red);
-            color: white;
-            padding: 10px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .inventory-content {
-            padding: 15px;
-            background: #fffdfd;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .found-item {
-            border: 1px dashed #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-            background: #fafafa;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: fadeIn 0.5s;
-        }
-
-        .found-item img {
-            width: 40px;
-            height: 40px;
-            background: #000;
-            border: 1px solid #333;
-        }
-
-        .item-desc {
-            font-size: 0.8rem;
-            color: #333;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         /* POPUPS DE DENUNCIA */
         .search-poster {
             position: fixed;
@@ -316,29 +232,152 @@
             padding: 20px;
             background: #fff;
             border: 3px solid #000;
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
             z-index: 9998;
-            pointer-events: none; /* Intocables */
+            pointer-events: none;
+            /* Intocables */
             font-family: Arial, sans-serif;
         }
 
         .search-poster img {
             width: 100%;
             height: 180px;
-            background: #ddd; /* Espacio para foto en B/N */
+            background: #ddd;
+            /* Espacio para foto en B/N */
             margin-bottom: 10px;
         }
 
-        .poster-title {
-            font-size: 1.5rem;
-            font-weight: 900;
-            text-align: center;
-            margin-bottom: 5px;
-            letter-spacing: -1px;
+        .glitch-text {
+            animation: glitch 2s infinite;
         }
-        
+
+        /* CARRUSEL PROMOCIONAL */
+        .carousel-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto;
+            overflow: hidden;
+            border: 5px solid var(--gob-gold);
+            position: relative;
+            background: #fff;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: calc(300px * 6);
+            /* 6 slides x 300px ej */
+            animation: scrollCarousel 20s linear infinite;
+        }
+
+        /* Pausar carrusel al pasar el mouse */
+        .carousel-container:hover .carousel-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollCarousel {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-300px * 3));
+            }
+
+            /* Mover 3 slides para loop infinito si hay duplicados */
+        }
+
+        .carousel-slide {
+            width: 300px;
+            height: 250px;
+            flex-shrink: 0;
+            position: relative;
+            cursor: crosshair;
+            border-right: 2px solid #ddd;
+        }
+
+        /* Imagen frontal turística */
+        .slide-front {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.1s;
+            /* Cambio muy rápido para asustar */
+            z-index: 2;
+        }
+
+        /* Imagen trasera perturbadora (ficha) */
+        .slide-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #fff;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            font-family: Arial, sans-serif;
+            border: 2px solid black;
+        }
+
+        .slide-back img {
+            width: 80%;
+            height: 120px;
+            background: #333;
+            margin-bottom: 5px;
+        }
+
+        .slide-back strong {
+            color: black;
+            font-size: 1.1rem;
+        }
+
+        .slide-back small {
+            color: red;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Efecto Hover: Ocultar front, mostrar ficha */
+        .carousel-slide:hover .slide-front {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* ENLACES OCULTOS / MADRIGUERAS */
+        .hidden-link {
+            text-decoration: none;
+            color: inherit;
+            cursor: text;
+            /* para disimular */
+            position: relative;
+        }
+
+        .hidden-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--gob-red);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .hidden-link:hover::after {
+            opacity: 0.5;
+            /* Apenas visible para el que presta atención */
+        }
     </style>
 </head>
+
 <body>
 
     <div class="glitch-layer" id="glitch-layer"></div>
@@ -354,7 +393,6 @@
         <nav>
             <a href="404.html">Turismo Mágico</a>
             <a href="404.html">Comprar Boletos</a>
-            <!-- HOTSPOT 1: El click interviene el enlace -->
             <a href="404.html" id="hotspot-link">Rutas Seguras</a>
         </nav>
     </header>
@@ -371,41 +409,106 @@
             <p>Descubre todo lo que tenemos para ofrecerte. Explora nuestras zonas turísticas avaladas.</p>
         </div>
 
+        <!-- SECCIÓN DE CARRUSEL -->
+        <div class="carousel-container" title="Explora las maravillas de Jalisco">
+            <div class="carousel-track">
+                <!-- Slide 1 -->
+                <div class="carousel-slide">
+                    <img class="slide-front"
+                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%236bb382'/><text x='50' y='125' fill='white' font-family='sans-serif' font-size='20'>PUEBLOS MÁGICOS</text></svg>"
+                        alt="Turismo">
+                    <div class="slide-back">
+                        <strong>¿LE HAS VISTO?</strong>
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
+                            alt="Foto">
+                        <small>Desaparecido: Tapalpa</small>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <img class="slide-front"
+                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%235b8cb8'/><text x='70' y='125' fill='white' font-family='sans-serif' font-size='20'>PLAYAS SOLEADAS</text></svg>"
+                        alt="Turismo">
+                    <div class="slide-back">
+                        <strong>¿DÓNDE ESTÁ?</strong>
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
+                            alt="Foto">
+                        <small>Visto por última vez: Vallarta</small>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <img class="slide-front"
+                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%23b3925d'/><text x='30' y='125' fill='white' font-family='sans-serif' font-size='20'>CULTURA MILENARIA</text></svg>"
+                        alt="Turismo">
+                    <div class="slide-back">
+                        <strong>TE BUSCAMOS</strong>
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
+                            alt="Foto">
+                        <small>No regresó del Estadio</small>
+                    </div>
+                </div>
+                <!-- Duplicados para Loop Infinito -->
+                <div class="carousel-slide">
+                    <img class="slide-front"
+                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%236bb382'/><text x='50' y='125' fill='white' font-family='sans-serif' font-size='20'>PUEBLOS MÁGICOS</text></svg>"
+                        alt="Turismo">
+                    <div class="slide-back">
+                        <strong>¿LE HAS VISTO?</strong>
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
+                            alt="Foto">
+                        <small>Edad: 21 años</small>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img class="slide-front"
+                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%235b8cb8'/><text x='70' y='125' fill='white' font-family='sans-serif' font-size='20'>PLAYAS SOLEADAS</text></svg>"
+                        alt="Turismo">
+                    <div class="slide-back">
+                        <strong>¿DÓNDE ESTÁ?</strong>
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
+                            alt="Foto">
+                        <small>Ayúdanos a encontrarla</small>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img class="slide-front"
+                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%23b3925d'/><text x='30' y='125' fill='white' font-family='sans-serif' font-size='20'>CULTURA MILENARIA</text></svg>"
+                        alt="Turismo">
+                    <div class="slide-back">
+                        <strong>TE BUSCAMOS</strong>
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
+                            alt="Foto">
+                        <small>Denuncia abierta</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="grid-tours">
             <div class="card">
                 <img src="" alt="Imagen no disponible" title="Error de servidor">
                 <h3>Estadio Akron</h3>
-                <p>El epicentro de la emoción. Conoce los protocolos de acceso.</p>
-                <!-- HOTSPOT 2: La mancha oculta -->
-                <div class="hotspot-stain" id="hotspot-stain" title="¿Qué es esto?"></div>
+                <!-- Aquí está la conexión hacia la siguiente nota intermeda: "protocolos" -->
+                <p>El epicentro de la emoción. Conoce los <a href="nota_policial.html" class="hidden-link"
+                        data-id="item_mapa">protocolos</a> de acceso.</p>
             </div>
             <div class="card">
                 <img src="" alt="Placeholder">
                 <h3>Centro Histórico</h3>
-                <p>Cultura, gastronomía y seguridad en cada rincón.</p>
-                <!-- HOTSPOT 3: Texto invisible o camuflado -->
-                <span id="hotspot-text" style="cursor: pointer; opacity: 0.1; font-size: 0.5rem; font-family: monospace; position: absolute; bottom: 5px; left: 5px; z-index: 10;">C.I. 94829</span>
+                <!-- Aquí también, en la palabra "seguridad" -->
+                <p>Cultura, gastronomía y <a href="nota_policial.html" class="hidden-link" style="font-weight: bold;"
+                        data-id="item_zapato">seguridad</a> en cada rincón.</p>
             </div>
         </div>
 
         <!-- Instrucción subliminal que solo se ve bajando mucho -->
-        <div style="margin-top: 1500px; opacity: 0.1; text-align: center; user-select: none;">
-            <code>Error de sistema: 15,000 registros omitidos del renderizado.</code>
+        <div style="margin-top: 1500px; opacity: 0.2; text-align: center; user-select: none;">
+            <code><a href="nota_policial.html" style="color: inherit; text-decoration: none;" data-id="item_credencial">Error de sistema: 15,000 registros omitidos del buscador general.</a></code>
         </div>
     </div>
 
     <div id="popup-layer"></div>
-
-    <!-- PANEL DEL INVENTARIO -->
-    <div id="inventory-panel">
-        <div class="inventory-header">
-            <span>[!] ANOMALÍAS DETECTADAS</span>
-            <span id="anomaly-count">0</span>
-        </div>
-        <div class="inventory-content" id="inventory-content">
-            <!-- Items irán aquí -->
-        </div>
-    </div>
 
     <script>
         // --- 1. LÓGICA DE CORRUPCIÓN VISUAL Y POPUPS POR SCROLL ---
@@ -416,14 +519,14 @@
         window.addEventListener('scroll', () => {
             const maxScroll = document.body.scrollHeight - window.innerHeight;
             const scrollPercent = window.scrollY / maxScroll;
-            
+
             // Incrementa el sepia, cambia el tono levemente
             body.style.filter = `contrast(${1 + scrollPercent}) sepia(${scrollPercent * 60}%) hue-rotate(${scrollPercent * -30}deg)`;
             glitchLayer.style.opacity = scrollPercent * 0.8;
 
             // Pops aleatorios de fichas
             // Probabilidad aumenta mientras más bajes
-            const prob = 0.99 - (scrollPercent * 0.05); 
+            const prob = 0.99 - (scrollPercent * 0.05);
             if (Math.random() > prob) createPopup();
         });
 
@@ -433,116 +536,49 @@
 
             const popup = document.createElement('div');
             popup.className = 'search-poster';
-            
+
             // Posicionamiento aleatorio en viewport
             popup.style.top = Math.random() * 70 + 5 + 'vh';
             popup.style.left = Math.random() * 70 + 5 + 'vw';
-            
+
             // Inclinación aleatoria
             const rot = (Math.random() - 0.5) * 20;
             popup.style.transform = `rotate(${rot}deg)`;
-            
+
             // Data placeholder
             const edades = ['19 años', '24 años', '32 años', '16 años'];
             const fechas = ['12/03/2026', '04/01/2026', '28/11/2025'];
-            
+
             // Usamos un SVG como placeholder para la imagen del desaparecido
             const svgPlaceholder = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23666'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING</text></svg>";
-            
-            popup.innerHTML = \`
-                <div class="poster-title">¿DÓNDE ESTÁN?</div>
-                <img src="\${svgPlaceholder}" alt="Foto placeholder">
+
+            popup.innerHTML = `
+                <div style="font-size: 1.5rem; font-weight: 900; text-align: center; margin-bottom: 5px; letter-spacing: -1px;">¿DÓNDE ESTÁN?</div>
+                <img src="${svgPlaceholder}" alt="Foto placeholder">
                 <strong>Desaparecido/a en la vía pública</strong><br>
-                <small>Edad: \${edades[Math.floor(Math.random()*edades.length)]}</small><br>
-                <small>Fecha: \${fechas[Math.floor(Math.random()*fechas.length)]}</small>
-            \`;
+                <small>Edad: ${edades[Math.floor(Math.random() * edades.length)]}</small><br>
+                <small>Fecha: ${fechas[Math.floor(Math.random() * fechas.length)]}</small>
+            `;
             popupLayer.appendChild(popup);
         }
 
-        // --- 2. SISTEMA LÚDICO DE OBJETOS OCULTOS (HOTSPOTS) ---
-        
-        // Base de datos de objetos
-        const itemsDB = {
-            'item_mapa': { title: 'Mapa rasgado', desc: 'Muestra una ruta no oficial que acaba abruptamente en una brecha.', icon: 'M' },
-            'item_zapato': { title: 'Tenis manchado', desc: 'Encontrado a 5km del estadio. Talla 24. No reclamado.', icon: 'Z' },
-            'item_credencial': { title: 'Credencial rota', desc: 'ID de estudiante. Los últimos registros indican que tomó un taxi seguro.', icon: 'C' }
-        };
+        // --- 2. SISTEMA LÚDICO ELIMINADO EN FAVOR DE LA NAVEGACIÓN --
+        // Cuando un jugador hace clic en las palabras clave, estas simularán un glitch breve antes de navegar
 
-        const inventoryPanel = document.getElementById('inventory-panel');
-        const inventoryContent = document.getElementById('inventory-content');
-        const countDisplay = document.getElementById('anomaly-count');
+        document.querySelectorAll('.hidden-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = e.currentTarget.href;
 
-        // Inicializar estado desde LocalStorage
-        let foundItems = JSON.parse(localStorage.getItem('webart_inventory')) || [];
+                body.style.filter = `invert(100%) blur(2px)`; // Efecto trauma
 
-        function saveInventory() {
-            localStorage.setItem('webart_inventory', JSON.stringify(foundItems));
-            updateUI();
-        }
-
-        function updateUI() {
-            if (foundItems.length > 0) {
-                inventoryPanel.classList.add('visible');
-            }
-            
-            countDisplay.innerText = foundItems.length;
-            inventoryContent.innerHTML = '';
-            
-            foundItems.forEach(id => {
-                const data = itemsDB[id];
-                if (!data) return;
-
-                const div = document.createElement('div');
-                div.className = 'found-item';
-                div.innerHTML = \`
-                    <div style="width: 40px; height: 40px; background: black; color: white; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size: 1.2rem; flex-shrink: 0;">
-                        \${data.icon}
-                    </div>
-                    <div>
-                        <strong>\${data.title}</strong>
-                        <div class="item-desc">\${data.desc}</div>
-                    </div>
-                \`;
-                inventoryContent.appendChild(div);
-            });
-        }
-
-        function collectItem(id) {
-            if (!foundItems.includes(id)) {
-                // Microinteracción visual y sonora sutil (sin audio por ahora, solo visual)
-                body.style.filter = \`invert(100%) blur(2px)\`;
                 setTimeout(() => {
-                    body.style.filter = \`\`;
-                    // Reforzar glitch
-                    body.style.filter = \`contrast(\${1 + (window.scrollY / document.body.scrollHeight)}) sepia(\${(window.scrollY / document.body.scrollHeight) * 60}%) hue-rotate(\${(window.scrollY / document.body.scrollHeight) * -30}deg)\`;
-                }, 150);
-
-                foundItems.push(id);
-                saveInventory();
-            }
-        }
-
-        // Registrar eventos en los hotspots
-        document.getElementById('hotspot-link').addEventListener('click', (e) => {
-            e.preventDefault();
-            collectItem('item_mapa');
-            setTimeout(() => { window.location.href = e.target.href; }, 1000);
+                    window.location.href = target;
+                }, 200);
+            });
         });
-
-        document.getElementById('hotspot-stain').addEventListener('click', (e) => {
-            collectItem('item_zapato');
-            e.target.style.opacity = 0; // Se desvanece al encontrarlo
-        });
-
-        document.getElementById('hotspot-text').addEventListener('click', (e) => {
-            collectItem('item_credencial');
-            e.target.style.color = "red";
-            e.target.style.opacity = 1;
-        });
-
-        // Render inicial
-        updateUI();
 
     </script>
 </body>
+
 </html>
