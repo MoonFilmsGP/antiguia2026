@@ -508,6 +508,19 @@
         </div>
     </div>
 
+    <!-- El detonador de la invasión -->
+    <div id="cookie-banner">
+        <div class="cookie-text">
+            <strong>Portal de Gobierno del Estado.</strong> Utilizamos cookies propias y de terceros para optimizar la
+            navegación, emular protocolos de seguridad y blanquear estadísticas de uso. Al continuar navegando,
+            consideramos que acepta su uso y consiente los registros.
+        </div>
+        <div>
+            <button class="cookie-btn" id="btn-accept">ACEPTAR</button>
+            <button class="cookie-btn" id="btn-reject" style="background:#555;">RECHAZAR</button>
+        </div>
+    </div>
+
     <div id="popup-layer"></div>
 
     <script>
@@ -527,6 +540,90 @@
                 }, 200);
             });
         });
+
+        // MECÁNICA INVASIVA: POP-UPS IN-PAGE
+
+        let invasionTriggered = false;
+        let spamInterval;
+        const cookieBanner = document.getElementById('cookie-banner');
+
+        // Función para detonar la avalancha
+        function startInvasion() {
+            if (invasionTriggered) return;
+            invasionTriggered = true;
+
+            cookieBanner.style.display = 'none'; // Quitar la fachada
+
+            // Glitch inmediato de la página
+            body.style.filter = `contrast(1.5) sepia(80%) hue-rotate(-50deg)`;
+
+            // Empezar a escupir pop-ups como virus de los 90s
+            spamInterval = setInterval(createInvasivePopup, 200); // 5 popups por segundo!
+        }
+
+        // Si intentan cerrar por las buenas
+        document.getElementById('btn-accept').addEventListener('click', startInvasion);
+        document.getElementById('btn-reject').addEventListener('click', startInvasion);
+
+        // O SI INTENTAN IRSE DE LA PÁGINA (Intent Exit pattern)
+        document.addEventListener('mouseleave', (e) => {
+            // Si el mouse sale por la parte de arriba (hacia la barra de URL o cierre de Tab)
+            if (e.clientY <= 0) {
+                startInvasion();
+            }
+        });
+
+        function createInvasivePopup() {
+            // Limitar a 100 para no reventar literalmente la computadora del usuario
+            if (document.querySelectorAll('.invasive-popup').length > 100) return;
+
+            const popup = document.createElement('div');
+            popup.className = 'invasive-popup';
+
+            // Coordenadas caóticas en toda la pantalla
+            const maxW = window.innerWidth - 300;
+            const maxH = window.innerHeight - 300;
+            popup.style.left = Math.max(0, Math.random() * maxW) + 'px';
+            popup.style.top = Math.max(0, Math.random() * maxH) + 'px';
+
+            // Data simulando fichas reales
+            const names = ['FALTA', 'NO LOCALIZADO', 'TE BUSCAMOS', '¿DÓNDE ESTÁ?'];
+            const title = names[Math.floor(Math.random() * names.length)];
+
+            // Ficha cruda (Placeholder estricto para imagen fotográfica de desaparecido)
+            const imgPh = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='200'><rect width='250' height='200' fill='%23111'/><text x='15' y='100' fill='white' font-family='sans-serif' font-size='12'>[ FOTO DE FICHA REAL ]</text></svg>";
+
+            popup.innerHTML = `
+                <div class="popup-header">
+                    <span>ALERTA_SISTEMA_${Math.floor(Math.random() * 9999)}</span>
+                    <div class="popup-header-x">X</div>
+                </div>
+                <div class="popup-content">
+                    <img src="${imgPh}" alt="Alerta">
+                    <strong>${title}</strong>
+                    <p>No regresó a casa. La autoridad no da respuesta.</p>
+                </div>
+            `;
+
+            // Falsa esperanza: intentar cerrarlos genera MÁS
+            popup.querySelector('.popup-header-x').addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                e.target.closest('.invasive-popup').remove();
+                // Castigo: si cierras 1, aparecen 2 (acelerador)
+                createInvasivePopup();
+                createInvasivePopup();
+            });
+
+            document.body.appendChild(popup);
+
+            // Autocierre aleatorio de algunos para dar sensación de movimiento orgánico (burbujeo)
+            setTimeout(() => {
+                if (popup.parentNode && Math.random() > 0.5) {
+                    popup.remove();
+                }
+            }, 3000 + Math.random() * 4000);
+        }
 
     </script>
 </body>
