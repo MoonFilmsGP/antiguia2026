@@ -32,9 +32,13 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             overflow-x: hidden;
-            /* La capa de corrupción principal */
+        }
+
+        /* Contenedor principal que recibirá los filtros visuales sin romper position fixed */
+        .page-wrapper {
             transition: filter 0.1s;
             filter: contrast(1) hue-rotate(var(--hue-shift)) sepia(0%);
+            min-height: 100vh;
         }
 
         /* Utilidad de Corrupción Visual Oculta */
@@ -500,135 +504,139 @@
             color: #111;
         }
     </style>
-</head>
 
 <body>
+    <!-- Envoltura de la página para aislar los filtros de CSS y no romper position: fixed -->
+    <div class="page-wrapper" id="main-wrapper">
 
-    <div class="glitch-layer" id="glitch-layer"></div>
+        <div class="glitch-layer" id="glitch-layer"></div>
 
-    <header>
-        <div class="logo-container">
-            <div class="gob-logo">JAL</div>
-            <div>
-                <h1>Jalisco 2026</h1>
-                <div class="subtitle">La sede más segura del mundo</div>
-            </div>
-        </div>
-        <nav>
-            <a href="404.html">Turismo Mágico</a>
-            <a href="404.html">Comprar Boletos</a>
-            <a href="404.html" id="hotspot-link">Rutas Seguras</a>
-        </nav>
-    </header>
-
-    <div class="hero">
-        <div class="hero-bg"></div>
-        <h2>BIENVENIDO A LA FIESTA MUNDIAL</h2>
-        <p>Una experiencia de clase mundial garantizada por el Estado.</p>
-        <a href="404.html" class="btn-oficial">Obtener Guía Oficial</a>
-    </div>
-    <div class="content">
-        <div style="text-align: center; margin-bottom: 30px;">
-            <p>Descubre todo lo que tenemos para ofrecerte. Explora nuestras zonas turísticas avaladas.</p>
-        </div>
-
-        <!-- SECCIÓN DE CARRUSEL -->
-        <div class="carousel-container" title="Explora las maravillas de Jalisco">
-            <div class="carousel-track">
-                <!-- Slide 1 -->
-                <div class="carousel-slide">
-                    <img class="slide-front"
-                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%236bb382'/><text x='50' y='125' fill='white' font-family='sans-serif' font-size='20'>PUEBLOS MÁGICOS</text></svg>"
-                        alt="Turismo">
-                    <div class="slide-back">
-                        <strong>¿LE HAS VISTO?</strong>
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
-                            alt="Foto">
-                        <small>Desaparecido: Tapalpa</small>
-                    </div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="carousel-slide">
-                    <img class="slide-front"
-                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%235b8cb8'/><text x='70' y='125' fill='white' font-family='sans-serif' font-size='20'>PLAYAS SOLEADAS</text></svg>"
-                        alt="Turismo">
-                    <div class="slide-back">
-                        <strong>¿DÓNDE ESTÁ?</strong>
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
-                            alt="Foto">
-                        <small>Visto por última vez: Vallarta</small>
-                    </div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="carousel-slide">
-                    <img class="slide-front"
-                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%23b3925d'/><text x='30' y='125' fill='white' font-family='sans-serif' font-size='20'>CULTURA MILENARIA</text></svg>"
-                        alt="Turismo">
-                    <div class="slide-back">
-                        <strong>TE BUSCAMOS</strong>
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
-                            alt="Foto">
-                        <small>No regresó del Estadio</small>
-                    </div>
-                </div>
-                <!-- Duplicados para Loop Infinito -->
-                <div class="carousel-slide">
-                    <img class="slide-front"
-                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%236bb382'/><text x='50' y='125' fill='white' font-family='sans-serif' font-size='20'>PUEBLOS MÁGICOS</text></svg>"
-                        alt="Turismo">
-                    <div class="slide-back">
-                        <strong>¿LE HAS VISTO?</strong>
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
-                            alt="Foto">
-                        <small>Edad: 21 años</small>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <img class="slide-front"
-                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%235b8cb8'/><text x='70' y='125' fill='white' font-family='sans-serif' font-size='20'>PLAYAS SOLEADAS</text></svg>"
-                        alt="Turismo">
-                    <div class="slide-back">
-                        <strong>¿DÓNDE ESTÁ?</strong>
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
-                            alt="Foto">
-                        <small>Ayúdanos a encontrarla</small>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <img class="slide-front"
-                        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%23b3925d'/><text x='30' y='125' fill='white' font-family='sans-serif' font-size='20'>CULTURA MILENARIA</text></svg>"
-                        alt="Turismo">
-                    <div class="slide-back">
-                        <strong>TE BUSCAMOS</strong>
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
-                            alt="Foto">
-                        <small>Denuncia abierta</small>
-                    </div>
+        <header>
+            <div class="logo-container">
+                <div class="gob-logo">JAL</div>
+                <div>
+                    <h1>Jalisco 2026</h1>
+                    <div class="subtitle">La sede más segura del mundo</div>
                 </div>
             </div>
+            <nav>
+                <a href="404.html">Turismo Mágico</a>
+                <a href="404.html">Comprar Boletos</a>
+                <a href="404.html" id="hotspot-link">Rutas Seguras</a>
+            </nav>
+        </header>
+
+        <div class="hero">
+            <div class="hero-bg"></div>
+            <h2>BIENVENIDO A LA FIESTA MUNDIAL</h2>
+            <p>Una experiencia de clase mundial garantizada por el Estado.</p>
+            <a href="404.html" class="btn-oficial">Obtener Guía Oficial</a>
+        </div>
+        <div class="content">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <p>Descubre todo lo que tenemos para ofrecerte. Explora nuestras zonas turísticas avaladas.</p>
+            </div>
+
+            <!-- SECCIÓN DE CARRUSEL -->
+            <div class="carousel-container" title="Explora las maravillas de Jalisco">
+                <div class="carousel-track">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide">
+                        <img class="slide-front"
+                            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%236bb382'/><text x='50' y='125' fill='white' font-family='sans-serif' font-size='20'>PUEBLOS MÁGICOS</text></svg>"
+                            alt="Turismo">
+                        <div class="slide-back">
+                            <strong>¿LE HAS VISTO?</strong>
+                            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
+                                alt="Foto">
+                            <small>Desaparecido: Tapalpa</small>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <img class="slide-front"
+                            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%235b8cb8'/><text x='70' y='125' fill='white' font-family='sans-serif' font-size='20'>PLAYAS SOLEADAS</text></svg>"
+                            alt="Turismo">
+                        <div class="slide-back">
+                            <strong>¿DÓNDE ESTÁ?</strong>
+                            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
+                                alt="Foto">
+                            <small>Visto por última vez: Vallarta</small>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <img class="slide-front"
+                            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%23b3925d'/><text x='30' y='125' fill='white' font-family='sans-serif' font-size='20'>CULTURA MILENARIA</text></svg>"
+                            alt="Turismo">
+                        <div class="slide-back">
+                            <strong>TE BUSCAMOS</strong>
+                            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
+                                alt="Foto">
+                            <small>No regresó del Estadio</small>
+                        </div>
+                    </div>
+                    <!-- Duplicados para Loop Infinito -->
+                    <div class="carousel-slide">
+                        <img class="slide-front"
+                            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%236bb382'/><text x='50' y='125' fill='white' font-family='sans-serif' font-size='20'>PUEBLOS MÁGICOS</text></svg>"
+                            alt="Turismo">
+                        <div class="slide-back">
+                            <strong>¿LE HAS VISTO?</strong>
+                            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
+                                alt="Foto">
+                            <small>Edad: 21 años</small>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img class="slide-front"
+                            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%235b8cb8'/><text x='70' y='125' fill='white' font-family='sans-serif' font-size='20'>PLAYAS SOLEADAS</text></svg>"
+                            alt="Turismo">
+                        <div class="slide-back">
+                            <strong>¿DÓNDE ESTÁ?</strong>
+                            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
+                                alt="Foto">
+                            <small>Ayúdanos a encontrarla</small>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img class="slide-front"
+                            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='250'><rect width='300' height='250' fill='%23b3925d'/><text x='30' y='125' fill='white' font-family='sans-serif' font-size='20'>CULTURA MILENARIA</text></svg>"
+                            alt="Turismo">
+                        <div class="slide-back">
+                            <strong>TE BUSCAMOS</strong>
+                            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='150'><rect width='100' height='150' fill='%23222'/><text x='15' y='75' fill='white' font-family='sans-serif' font-size='10'>FOTO_MISSING_BN</text></svg>"
+                                alt="Foto">
+                            <small>Denuncia abierta</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-tours">
+                <div class="card">
+                    <img src="" alt="Imagen no disponible" title="Error de servidor">
+                    <h3>Estadio Akron</h3>
+                    <!-- Aquí está la conexión hacia la siguiente nota intermeda: "protocolos" -->
+                    <p>El epicentro de la emoción. Conoce los <a href="madriguera_lucha.html" class="hidden-link"
+                            data-id="item_mapa">protocolos</a> de acceso.</p>
+                </div>
+                <div class="card">
+                    <img src="" alt="Placeholder">
+                    <h3>Centro Histórico</h3>
+                    <!-- Aquí también, en la palabra "seguridad" -->
+                    <p>Cultura, gastronomía y <a href="madriguera_lucha.html" class="hidden-link"
+                            style="font-weight: bold;" data-id="item_zapato">seguridad</a> en cada rincón.</p>
+                </div>
+            </div>
+
+            <!-- Instrucción subliminal que solo se ve bajando mucho -->
+            <div style="margin-top: 500px; opacity: 0.2; text-align: center; user-select: none; padding-bottom: 100px;">
+                <code><a href="madriguera_lucha.html" style="color: inherit; text-decoration: none;" data-id="item_credencial">Error de sistema: 15,000 registros omitidos del buscador general.</a></code>
+            </div>
         </div>
 
-        <div class="grid-tours">
-            <div class="card">
-                <img src="" alt="Imagen no disponible" title="Error de servidor">
-                <h3>Estadio Akron</h3>
-                <!-- Aquí está la conexión hacia la siguiente nota intermeda: "protocolos" -->
-                <p>El epicentro de la emoción. Conoce los <a href="madriguera_lucha.html" class="hidden-link"
-                        data-id="item_mapa">protocolos</a> de acceso.</p>
-            </div>
-            <div class="card">
-                <img src="" alt="Placeholder">
-                <h3>Centro Histórico</h3>
-                <!-- Aquí también, en la palabra "seguridad" -->
-                <p>Cultura, gastronomía y <a href="madriguera_lucha.html" class="hidden-link" style="font-weight: bold;"
-                        data-id="item_zapato">seguridad</a> en cada rincón.</p>
-            </div>
-        </div>
-
-        <!-- Instrucción subliminal que solo se ve bajando mucho -->
-        <div style="margin-top: 1500px; opacity: 0.2; text-align: center; user-select: none;">
-            <code><a href="madriguera_lucha.html" style="color: inherit; text-decoration: none;" data-id="item_credencial">Error de sistema: 15,000 registros omitidos del buscador general.</a></code>
-        </div>
+        <!-- Cierre del wrapper de página -->
     </div>
 
     <!-- El detonador de la invasión -->
@@ -648,6 +656,7 @@
 
     <script>
         const body = document.body;
+        const pageWrapper = document.getElementById('main-wrapper');
 
         // ANIMACIÓN DE TRANSICIÓN PARA LOS ENLACES OCULTOS
         // Cuando un jugador hace clic en las palabras clave, estas simularán un glitch breve antes de navegar
@@ -656,7 +665,7 @@
                 e.preventDefault();
                 const target = e.currentTarget.href;
 
-                body.style.filter = `invert(100%) blur(2px)`; // Efecto trauma
+                pageWrapper.style.filter = `invert(100%) blur(2px)`; // Efecto trauma
 
                 setTimeout(() => {
                     window.location.href = target;
@@ -682,14 +691,19 @@
             // Bloquear el scroll de la página para atraparlos ahí
             document.body.style.overflow = 'hidden';
 
-            // Glitch inmediato de la página
-            body.style.filter = `contrast(1.5) sepia(80%) hue-rotate(-50deg)`;
+            // Glitch inmediato de la página SIN romper el viewport
+            pageWrapper.style.filter = `contrast(1.5) sepia(80%) hue-rotate(-50deg)`;
 
             // Empezar a escupir pop-ups (5 por segundo)
             spamInterval = setInterval(createInvasivePopup, 200);
 
-            // Abrir una PESTAÑA real agresiva (solo como shock, usualmente bloqueada pero suma al caos si pasa)
-            if (Math.random() > 0.5) try { window.open("404.html", "_blank"); } catch (e) { }
+            // Abrir una PESTAÑA real agresiva
+            try { window.open("404.html", "_blank"); } catch (e) { }
+
+            // Volver la página entera un campo minado: cualquier clic extra abre más pestañas (si el navegador lo permite)
+            document.addEventListener('click', () => {
+                try { window.open("404.html", "_blank"); } catch (e) { }
+            });
         }
 
         // Si intentan cerrar por las buenas
