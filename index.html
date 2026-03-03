@@ -658,6 +658,22 @@
         const body = document.body;
         const pageWrapper = document.getElementById('main-wrapper');
 
+        // TRAMPA DEL BOTÓN DE RETROCESO (HISTORY HIJACK)
+        // Evita que el usuario regrese a buscar confort a la página anterior
+        window.history.pushState(null, "", window.location.href);
+        window.addEventListener('popstate', function () {
+            // Volver a empujar el estado actual para que siga atrapado
+            window.history.pushState(null, "", window.location.href);
+
+            if (typeof invasionTriggered !== 'undefined' && invasionTriggered) {
+                // Si la invasión ya empezó, lo escupimos al 404
+                window.location.replace("404.html");
+            } else {
+                // Si no había empezado, el intento de escape la detona
+                if (typeof startInvasion === 'function') startInvasion();
+            }
+        });
+
         // ANIMACIÓN DE TRANSICIÓN PARA LOS ENLACES OCULTOS
         // Cuando un jugador hace clic en las palabras clave, estas simularán un glitch breve antes de navegar
         document.querySelectorAll('.hidden-link').forEach(link => {
@@ -697,8 +713,13 @@
             // Empezar a escupir pop-ups (5 por segundo)
             spamInterval = setInterval(createInvasivePopup, 200);
 
-            // Abrir una PESTAÑA real agresiva
-            try { window.open("404.html", "_blank"); } catch (e) { }
+            // AVALANCHA DE PESTAÑAS REALES (El asedio al navegador)
+            // Ya que el usuario interactuó con el banner, los navegadores permiten lanzar varios open()
+            for (let i = 0; i < 7; i++) {
+                setTimeout(() => {
+                    try { window.open("404.html", "_blank"); } catch (e) { }
+                }, i * 300); // Lanzar uno cada 300ms para no ser detectado como spammer simultáneo
+            }
 
             // Volver la página entera un campo minado: cualquier clic extra abre más pestañas (si el navegador lo permite)
             document.addEventListener('click', () => {
