@@ -375,6 +375,130 @@
             opacity: 0.5;
             /* Apenas visible para el que presta atención */
         }
+
+        /* FALSO AVISO DE COOKIES */
+        #cookie-banner {
+            position: fixed !important;
+            bottom: 0px !important;
+            left: 0px !important;
+            width: 100vw !important;
+            background: #fff;
+            border-top: 5px solid var(--gob-gold);
+            padding: 20px;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.4);
+            z-index: 10000 !important;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-main);
+        }
+
+        .cookie-text {
+            max-width: 70%;
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        .cookie-btn {
+            background: var(--gob-green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-left: 10px;
+        }
+
+        .cookie-btn:hover {
+            background: var(--gob-red);
+        }
+
+        /* FALSO POP-UP WINDOWS / INVASIVO */
+        .invasive-popup {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%);
+            /* Rest of popup rules... */
+            position: fixed !important;
+            /* CLAVE: Flotantes en el viewport visible, no en el documento absolute */
+            width: 320px;
+            background: #ece9d8;
+            /* Estilo windows viejo / sistema rancio */
+            border: 2px outset #fff;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+            z-index: 99999 !important;
+            pointer-events: auto;
+            /* Para que bloqueen clicks debajo */
+            display: flex;
+            flex-direction: column;
+            animation: popIn 0.05s;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .popup-header {
+            background: linear-gradient(90deg, #0a246a, #a6caf0);
+            color: white;
+            padding: 3px 5px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .popup-header-x {
+            background: #d4d0c8;
+            color: black;
+            border: 1px outset #fff;
+            width: 15px;
+            text-align: center;
+            line-height: 12px;
+            cursor: pointer;
+            font-family: sans-serif;
+            font-size: 10px;
+        }
+
+        .popup-content {
+            padding: 10px;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px inset #fff;
+            margin: 5px;
+        }
+
+        .popup-content img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #333;
+            margin-bottom: 5px;
+        }
+
+        .popup-content strong {
+            color: red;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .popup-content p {
+            font-size: 0.75rem;
+            text-align: center;
+            margin-top: 5px;
+            color: #111;
+        }
     </style>
 </head>
 
@@ -403,7 +527,6 @@
         <p>Una experiencia de clase mundial garantizada por el Estado.</p>
         <a href="404.html" class="btn-oficial">Obtener Guía Oficial</a>
     </div>
-
     <div class="content">
         <div style="text-align: center; margin-bottom: 30px;">
             <p>Descubre todo lo que tenemos para ofrecerte. Explora nuestras zonas turísticas avaladas.</p>
@@ -537,7 +660,9 @@
 
                 setTimeout(() => {
                     window.location.href = target;
-                }, 200);
+                }
+
+                    , 200);
             });
         });
 
@@ -554,11 +679,17 @@
 
             cookieBanner.style.display = 'none'; // Quitar la fachada
 
+            // Bloquear el scroll de la página para atraparlos ahí
+            document.body.style.overflow = 'hidden';
+
             // Glitch inmediato de la página
             body.style.filter = `contrast(1.5) sepia(80%) hue-rotate(-50deg)`;
 
-            // Empezar a escupir pop-ups como virus de los 90s
-            spamInterval = setInterval(createInvasivePopup, 200); // 5 popups por segundo!
+            // Empezar a escupir pop-ups (5 por segundo)
+            spamInterval = setInterval(createInvasivePopup, 200);
+
+            // Abrir una PESTAÑA real agresiva (solo como shock, usualmente bloqueada pero suma al caos si pasa)
+            if (Math.random() > 0.5) try { window.open("404.html", "_blank"); } catch (e) { }
         }
 
         // Si intentan cerrar por las buenas
@@ -568,21 +699,30 @@
         // O SI INTENTAN IRSE DE LA PÁGINA (Intent Exit pattern)
         document.addEventListener('mouseleave', (e) => {
             // Si el mouse sale por la parte de arriba (hacia la barra de URL o cierre de Tab)
-            if (e.clientY <= 0) {
+            if (e.clientY <= 10) {
                 startInvasion();
             }
         });
 
+        // Intentar bloquear el botón de volver de forma sucia pidiendo confirmación
+        window.addEventListener('beforeunload', function (e) {
+            if (invasionTriggered) {
+                startInvasion();
+                e.preventDefault();
+                e.returnValue = 'La autoridad no responde. ¿Seguro que quieres ignorarlo?';
+            }
+        });
+
         function createInvasivePopup() {
-            // Limitar a 100 para no reventar literalmente la computadora del usuario
+            // Limitar a 100 in-page para no crashear
             if (document.querySelectorAll('.invasive-popup').length > 100) return;
 
             const popup = document.createElement('div');
             popup.className = 'invasive-popup';
 
-            // Coordenadas caóticas en toda la pantalla
-            const maxW = window.innerWidth - 300;
-            const maxH = window.innerHeight - 300;
+            // Coordenadas caóticas relativas AL VIEWPORT visible
+            const maxW = window.innerWidth - 320;
+            const maxH = window.innerHeight - 350;
             popup.style.left = Math.max(0, Math.random() * maxW) + 'px';
             popup.style.top = Math.max(0, Math.random() * maxH) + 'px';
 
@@ -590,8 +730,8 @@
             const names = ['FALTA', 'NO LOCALIZADO', 'TE BUSCAMOS', '¿DÓNDE ESTÁ?'];
             const title = names[Math.floor(Math.random() * names.length)];
 
-            // Ficha cruda (Placeholder estricto para imagen fotográfica de desaparecido)
-            const imgPh = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='200'><rect width='250' height='200' fill='%23111'/><text x='15' y='100' fill='white' font-family='sans-serif' font-size='12'>[ FOTO DE FICHA REAL ]</text></svg>";
+            // Ficha cruda
+            const imgPh = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='220'><rect width='280' height='220' fill='%23111'/><text x='30' y='110' fill='white' font-family='sans-serif' font-size='14'>[ FOTO DE FICHA REAL ]</text></svg>";
 
             popup.innerHTML = `
                 <div class="popup-header">
@@ -601,7 +741,7 @@
                 <div class="popup-content">
                     <img src="${imgPh}" alt="Alerta">
                     <strong>${title}</strong>
-                    <p>No regresó a casa. La autoridad no da respuesta.</p>
+                    <p style="font-weight:bold; color:black; font-size:0.9rem;">No regresó a casa. La autoridad no da respuesta.</p>
                 </div>
             `;
 
@@ -610,19 +750,16 @@
                 e.preventDefault();
                 e.stopPropagation();
                 e.target.closest('.invasive-popup').remove();
-                // Castigo: si cierras 1, aparecen 2 (acelerador)
+                // Castigo: si cierras 1, aparecen 3
                 createInvasivePopup();
                 createInvasivePopup();
+                createInvasivePopup();
+
+                // Intento sucio de arrojar un popup de navegador real a cada intento de cierre manual
+                try { window.open("404.html", "ALERTA" + Math.random(), "width=400,height=400,left=" + (Math.random() * 500) + ",top=" + (Math.random() * 500)); } catch (e) { }
             });
 
             document.body.appendChild(popup);
-
-            // Autocierre aleatorio de algunos para dar sensación de movimiento orgánico (burbujeo)
-            setTimeout(() => {
-                if (popup.parentNode && Math.random() > 0.5) {
-                    popup.remove();
-                }
-            }, 3000 + Math.random() * 4000);
         }
 
     </script>
